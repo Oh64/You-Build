@@ -1,0 +1,949 @@
+:DCS
+"BBBBBBBBBBBBBBBBBCCCCCCCCCCCCCCBBCDDDDDDDDDDDDCBBCDEEEEEEEEEEDCBBCDEFFF3F3FFEDCBBCDEFFFF3FFFEDCBBCDEFFF3F3FFEDCBBCDEFFFFFFFFEDCBBCDEFFFF3F3FEDCBBCDEF3FFF3FFEDCBBCDE333F3F3FEDCBBCDEF3FFFFFFEDCBBCDEEEEEEEEEEDCBBCDDDDDDDDDDDDCBBCCCCCCCCCCCCCCBBBBBBBBBBBBBBBBB"
+Lbl 0
+Menu("YOU BUILD BETA","NEW",1,"OPEN",2,"REPARER LE MONDE",10,"AIDE",AA,"SORTIR",99)
+
+Lbl AA
+EffÉcran
+105→K
+While K≠45
+
+If K=105
+Then
+EffÉcran
+Output(1,1,"[1]:COMMANDE CONSTRUCTION"
+Output(2,1,"[2]:COMMANDE JOUER"
+Output(3,1,"[3]:A QUOI SA SERT ?"
+Output(4,1,"[ENTER]: POUR ALLER ICI"
+Output(10,1,"[ANNUL]:RETOUR"
+End
+
+getKey→K
+
+If K=94
+Then
+EffÉcran
+Output(1,1,"X : TUE SI TOUCHER"
+Output(2,1,"θ : ENDROIT DE SPAWN"
+Output(3,1,"O : FIN"
+Output(4,1,"/ : NON TRAVERSABLE EN JEU"
+Output(5,1,"( ET ) : TELEPORTE A 
+Output(6,1," L'AUTRE"
+Output(7,1,"⁺ (X) : X TRAVERSABLE"
+End
+
+If K=93
+Then
+EffÉcran
+Output(1,1,"FLECHE POUR BOUGER"
+Output(2,1,"graphe : MODE BUILD"
+End
+
+If K=92
+Then
+EffÉcran
+Output(1,1,"FLECHE POUR BOUGER"
+Output(2,1,"graphe : MODE JOUER"
+Output(3,1,"2nde POUR POSER X"
+Output(4,1,"1,2,3,4,5,6,7 POUR "
+Output(5,1,"TRANSFORER X EN :"
+Output(6,1,"CHANGER EN CROIX, DEBUT,"
+Output(7,1,"FIN, BLOCK INVISIBLE, "
+Output(8,1,"TELPORT 1, TELEPORT 2, "
+Output(9,1,"FAUX X"
+End
+
+
+End
+Goto 0
+
+Lbl 10
+Menu("Y B > RLM","CRASH 'DIM ERRONEE'",11,"SORTIR",0)
+
+Lbl 11
+EffÉcran
+Disp "LE JEU VAS CRASH UNE FOIS","LE MONDE REPARER !"," "," "," "," "," "," "," "
+Wait 2
+EffÉcran
+Output(1,1,"Loading...")
+dim(L₁)-1→A
+If A≤L₁(1)
+Then
+Output(1,1,"Reparation...")
+A→L₁(1)
+EffÉcran
+Goto 12
+End
+Goto 0
+
+Lbl 99
+EffÉcran
+Stop
+
+Lbl W2
+Output(Y,X,")"
+L₂(8)→X
+L₂(9)→Y
+Goto C9
+
+Lbl L2
+Output(Y,X,"("
+L₂(11)→X
+L₂(12)→Y
+Goto C9
+
+Lbl W1
+Output(1,1,"                          ")
+Output(1,1,"Y"):Wait 0.2
+Output(1,1,"YO"):Wait 0.2
+Output(1,1,"YOU"):Wait 0.2
+Output(1,1,"YOU W"):Wait 0.2
+Output(1,1,"YOU WI"):Wait 0.2
+Output(1,1,"YOU WIN"):Wait 0.2
+Output(1,1,"YOU WIN !"):Wait 0.2
+1→A
+2→B
+While B≠10
+Output(B,A," ")
+A+1→A
+If A=27
+Then
+1→A
+B+1→B
+End
+End
+1→P
+Goto 3
+
+Lbl L1
+Output(1,1,"                          ")
+Output(1,1,"GAME OVER")
+2→P
+Wait 1
+Goto 3
+
+Lbl 2
+dim(L₁)→B
+L₁(1)→C
+If B≤4 ou C=1 ou C=0
+Then
+EffÉcran
+Output(1,1,"SAUVGARDE INVALIDE")
+Output(10,1,"-{ENTER}-")
+Wait 0.1
+0→K
+While K≠105 et K≠45 et K≠93
+getKey→K
+End
+0→K
+EffÉcran
+Goto 0
+End
+EffÉcran
+Lbl V4
+Menu("VERIFIER LE MONDE ?","FAIRE PHASE 2",V5,"NE PAS FAIRE PHASE 2",V2)
+Lbl V2
+Menu("BUG POSSIBLE. SURE ?","OUI",V3,"NON",V4)
+Lbl V3
+1→V
+Goto V1
+Lbl V5
+2→V
+Goto V1
+Lbl V1
+Output(1,1,"World cheking..."
+Output(2,1,"Loading..."
+{0}→L₅
+{0,0,0}→L₂
+Fixe 0
+For(A,2,C)
+(A*100)/C→D
+If D=9 ou D=0 ou D=99:Output(5,E-1," ")
+Output(5,1,D)
+partEnt(log(D))+2→E
+Output(5,E,"/100")
+If D=10:Output(5,1,"10/100")
+
+Output(3,1,"PHASE 1")
+
+If L₁(A+2)=2 et L₂(1)=0
+Then
+{1,L₁(A),L₁(A+1)}→L₂
+End
+
+If L₁(A)≤0 et L₁(A)≠999 et L₁(A+1)≠999
+Then
+Output(7,1,"World reparing..."
+1→L₁(A)
+Output(7,1,"                 "
+End
+
+If L₁(A)≥27 et L₁(A)≠999 et L₁(A+1)≠999
+Then
+Output(7,1,"World reparing..."
+26→L₁(A)
+Output(7,1,"                 "
+End
+
+If L₁(A+1)≤1 et L₁(A)≠999 et L₁(A+1)≠999
+Then
+Output(7,1,"World reparing..."
+2→L₁(A+1)
+Output(7,1,"                 "
+End
+
+If L₁(A+1)≥11 et L₁(A)≠999 et L₁(A+1)≠999
+Then
+Output(7,1,"World reparing..."
+10→L₁(A+1)
+Output(7,1,"                 "
+End
+
+If L₁(A+2)≥8 et L₁(A)≠999 et L₁(A+1)≠999
+Then
+Output(7,1,"World reparing..."
+1→L₁(A+2)
+Output(7,1,"                 "
+End
+
+If L₁(A+2)≤0 et L₁(A)≠999 et L₁(A+1)≠999
+Then
+Output(7,1,"World reparing..."
+1→L₁(A+2)
+Output(7,1,"                 "
+End
+
+If V=2
+Then
+Output(3,1,"PHASE 2")
+
+dim(L₅)→F
+If F≠1
+Then
+1→G
+For(G,2,F)
+If L₁(A)=L₅(G) et L₁(A+1)=L₅(G+1) et L₁(A)≠999 et L₅(G)≠999
+Then
+Output(7,1,"World reparing..."
+999→L₁(A)
+999→L₁(A+1)
+999→L₁(A+2)
+999→L₁(A+3)
+Output(7,1,"                 ")
+End
+G+3→G
+End
+End
+If L₁(A)≠999
+Then
+augmenter(L₅,{L₁(A),L₁(A+1),L₁(A+2),L₁(A+3)})→L₅
+End
+End
+
+A+3→A
+End
+Output(5,1,"100/100")
+getKey→K
+Wait 0.1
+EffÉcran
+0→D
+0→G
+0→F
+Flottant
+If K=52
+Then
+{37,2,9,1,1,3,9,2,1,4,9,3,1,4,8,4,1,3,8,5,1,2,8,4,6,3,7,7,1,4,7,1,1,2,7,1,1,0}→L₁
+dim(L₁)→B
+End
+{0,2,0,0,0}→L₆
+L₁(B)→L₆(3)
+999→L₁(B)
+augmenter(L₁,{999,999,999})→L₁
+2→P
+{0,0,0,0,0}→L₄
+If L₂(1)≠0:L₂(2)→X
+If L₂(1)≠0:L₂(3)→Y
+If L₂(1)=0:1→X
+If L₂(1)=0:10→Y
+{0,X,Y,0,1,1,0,0,0,0,0,0}→L₂
+2→L₆(2)
+L₂(2)→X
+L₂(3)→Y
+X→S
+Y-1→T
+3→H
+
+Goto R1
+
+Lbl 1
+{1}→L₁
+{0,0,0,0,0}→L₄
+{0,2,0,0,0}→L₆
+{0,1,10,0,1,1,0,0,0,0,0,0}→L₂
+1→P
+Goto 3
+
+Lbl 3
+EffÉcran
+2→L₆(2)
+L₂(2)→X
+L₂(3)→Y
+{0,0,0,0,0}→L₄
+X→S
+Y-1→T
+0→K
+0→H
+
+Lbl R1
+0→K
+While K≠45
+L₆(1)+1→L₆(1)
+If L₆(1)≥21:1→L₆(1)
+
+If X≠S ou Y≠T
+Then
+L₁(1)→B
+If B≠1
+Then
+
+Fixe 0
+
+If L₆(2)=0
+Then
+
+If L₄(1)≠0
+Then
+
+"DESACTIVER POUR PLANTAGE
+
+If L₄(4)=1:Output(L₄(3),L₄(2),"X")
+If L₄(4)=7:Output(L₄(3),L₄(2),"X")
+If P=1
+Then
+If L₄(4)=2:Output(L₄(3),L₄(2),"θ")
+If L₄(4)=4:Output(L₄(3),L₄(2),"/")
+If L₄(4)=7:Output(L₄(3),L₄(2),"⁺")
+End
+If L₄(4)=5:Output(L₄(3),L₄(2),"(")
+If L₄(4)=6:Output(L₄(3),L₄(2),")")
+If L₄(4)=3:Output(L₄(3),L₄(2),"O")
+0→L₄(1)
+0→L₄(2)
+0→L₄(3)
+0→L₄(4)
+0→L₄(5)
+
+X→S
+Y→T
+0→K
+Goto C8
+End
+
+If P=1
+Then
+For(A,2,B)
+
+If H=1 ou H=3
+Then
+(A*100)/B→C
+Output(1,1,C)
+Output(1,4,"/100")
+End
+Output(1,26,"I")
+
+If 0
+Then
+If L₁(A)=X et L₁(A+1)=Y et L₄(1)≠1
+Then
+1→L₄(1):X→L₄(2):Y→L₄(3):L₁(A+2)→L₄(4)
+End
+End
+
+If L₁(A)=S et L₁(A+1)=T
+Then
+1→L₆(2)
+Goto C9
+End
+
+Output(1,26,"-")
+
+A+3→A
+End
+End
+
+If P=2
+Then
+For(A,2,B)
+
+If H=1 ou H=3
+Then
+(A*100)/B→C
+Output(1,1,C)
+Output(1,4,"/100")
+End
+Output(1,26,"I")
+
+If L₁(A)=X et L₁(A+1)=Y et P=2
+Then
+
+If 0
+Then
+If L₄(1)≠1
+Then
+1→L₄(1):X→L₄(2):Y→L₄(3):L₁(A+2)→L₄(4)
+End
+End
+
+If L₁(A+2)=1
+Then
+2→L₆(2)
+Goto L1
+End
+
+If L₁(A+2)=3
+Then
+Goto W1
+End
+
+If L₁(A+2)=4
+Then
+Output(Y,X," ")
+Output(T,S,"+")
+S→X
+T→Y
+End
+
+If L₁(A+2)=5 et L₂(10)=1
+Then
+Goto L2
+End
+
+If L₁(A+2)=6 et L₂(7)=1
+Then
+Goto W2
+End
+
+If L₁(A)=S et L₁(A+2)=T
+Then
+1→L₆(2)
+Goto C9
+End
+
+End
+
+Output(1,26,"-")
+
+A+3→A
+End
+End
+End
+
+Lbl C9
+
+Fixe 0
+
+If L₆(2)≠0
+Then
+If L₆(2)=1
+Then
+If L₁(A+2)=1:Output(T,S,"X")
+If L₁(A+2)=7:Output(T,S,"X")
+If P=1
+Then
+If L₁(A+2)=2:Output(T,S,"θ")
+If L₁(A+2)=4:Output(T,S,"/")
+If L₁(A+2)=7:Output(T,S,"⁺")
+End
+If L₁(A+2)=3:Output(T,S,"O")
+If L₁(A+2)=5:Output(T,S,"(")
+If L₁(A+2)=6:Output(T,S,")")
+End
+
+If L₆(2)=2
+Then
+0→L₂(7)
+0→L₂(10)
+For(A,2,B)
+
+If H=1 ou H=3
+Then
+(A*100)/B→C
+Output(1,1,C)
+Output(1,4,"/100")
+End
+Output(1,26,"I")
+
+If L₁(A+2)=1:Output(L₁(A+1),L₁(A),"X"
+If L₁(A+2)=7:Output(L₁(A+1),L₁(A),"X")
+If P=1
+Then
+If L₁(A+2)=2:Output(L₁(A+1),L₁(A),"θ")
+If L₁(A+2)=4:Output(L₁(A+1),L₁(A),"/")
+If L₁(A+2)=7:Output(L₁(A+1),L₁(A),"⁺")
+End
+If L₁(A+2)=3:Output(L₁(A+1),L₁(A),"O")
+If L₁(A+2)=5:Output(L₁(A+1),L₁(A),"(")
+If L₁(A+2)=6:Output(L₁(A+1),L₁(A),")")
+If L₁(A+2)=5
+Then
+1→L₂(7)
+L₁(A)→L₂(8)
+L₁(A+1)→L₂(9)
+Else
+If L₂(7)=0
+Then
+0→L₂(7)
+1→L₂(8)
+1→L₂(9)
+End
+End
+
+If L₁(A+2)=6
+Then
+1→L₂(10)
+L₁(A)→L₂(11)
+L₁(A+1)→L₂(12)
+Else
+If L₂(10)=0
+Then
+0→L₂(10)
+1→L₂(11)
+1→L₂(12)
+End
+End
+
+If L₁(A+2)=3
+Then
+1→L₂(4)
+L₁(A)→L₂(5)
+L₁(A+1)→L₂(6)
+Else
+If L₂(4)=0
+Then
+0→L₂(4)
+1→L₂(5)
+1→L₂(6)
+End
+End
+
+Output(1,26,"-")
+
+If L₁(A+2)=2
+Then
+1→L₂(1)
+L₁(A)→L₂(2)
+L₁(A+1)→L₂(3)
+Else
+If L₂(1)=0
+Then
+0→L₂(1)
+1→L₂(2)
+10→L₂(3)
+End
+End
+A+3→A
+End
+0→L₂(1)
+0→L₂(4)
+End
+
+Lbl C8
+
+0→L₆(2)
+
+End
+
+Output(1,1,"                          ")
+
+If P=3:Goto F8
+If H=3:0→H
+
+0→K
+
+End
+
+End
+
+getKey→K
+X→S
+Y→T
+
+If K=53
+Then
+EffÉcran:2→L₆(2)
+If Y≠10:T+1→T
+If Y=10:T-1→T
+If H=0:3→H
+End
+
+If K=55
+Then
+Output(1,1,"                          ")
+H+1→H
+If H=2:0→H
+0→K
+If H=0:Output(1,1,"DEBUG LOAD : OFF"
+If H=1:Output(1,1,"DEBUG LOAD : ON"
+Wait 1
+Output(1,1,"                "
+End
+
+If P=2
+Then
+If K=25 et Y≠2 et Y≠1:Y-1→Y
+If K=34 et Y≠10:Y+1→Y
+If K=26 et X≠26:X+1→X
+If K=24 et X≠1:X-1→X
+
+If L₆(1)≥1 et L₆(1)≤10:Output(Y,X,"*")
+If L₆(1)>10 et L₆(1)≤20:Output(Y,X,"+")
+If X≠S ou Y≠T:Output(T,S," ")
+
+If K=15
+Then
+L₂(2)→X
+L₂(3)→Y
+X→S
+Y→T
+1→P
+EffÉcran
+2→L₆(2)
+Goto C9
+End
+
+End
+
+If P=1
+Then
+If K=25 et Y≠2 et Y≠1:Y-1→Y
+If K=34 et Y≠10:Y+1→Y
+If K=26 et X≠26:X+1→X
+If K=24 et X≠1:X-1→X
+
+If L₆(1)≥1 et L₆(1)≤10:Output(Y,X,"•")
+If L₆(1)>10 et L₆(1)≤20:Output(Y,X,"▫")
+If X≠S ou Y≠T:Output(T,S," ")
+
+If K=91
+Then
+Menu("MAKER PRO (BETA)","PLACEMENT RAPIDE",M1,"TOUT AUTOUR",M2,"SORTIR",M0)
+Lbl M1
+EffÉcran
+Input "TAILLE : ",A
+1→D
+EffÉcran
+Disp "1=BAS 2=HAUT 3=DROITE"
+Disp "4=GAUCHE"
+Input "DIRECTION : ",B
+EffÉcran
+If non(B≥1 et B≤4):Goto M0
+If B=1
+Then
+Y+A→C
+If C≥11:Goto M0
+End
+If B=2
+Then
+Y-A→C
+If C≤1:Goto M0
+End
+If B=3
+Then
+X+A→C
+If C≥27:Goto M0
+End
+If B=4
+Then
+X-A→C
+If C≤0:Goto M0
+End
+For(C,1,A)
+If B=1:augmenter(L₁,{X,(Y+C),D,0})→L₁
+If B=2:augmenter(L₁,{X,(Y-C),D,0})→L₁
+If B=3:augmenter(L₁,{(X+C),Y,D,0})→L₁
+If B=4:augmenter(L₁,{(X-C),Y,D,0})→L₁
+L₁(1)+4→L₁(1)
+End
+Goto M0
+Lbl M2
+1→D
+If Y=2 ou Y=10 ou X=1 ou X=26:Goto M0
+augmenter(L₁,{(X-1),(Y+1),D,0})→L₁
+augmenter(L₁,{(X+1),(Y+1),D,0})→L₁
+augmenter(L₁,{(X-1),(Y),D,0})→L₁
+augmenter(L₁,{(X+1),(Y),D,0})→L₁
+augmenter(L₁,{(X-1),(Y-1),1,0})→L₁
+augmenter(L₁,{(X+1),(Y-1),1,0})→L₁
+augmenter(L₁,{(X),(Y+1),1,0})→L₁
+augmenter(L₁,{(X),(Y-1),1,0})→L₁
+L₁(1)+32→L₁(1)
+Goto M0
+Lbl M0
+EffÉcran:2→L₆(2)
+If Y≠10:T+1→T
+If Y=10:T-1→T
+H=0:3→H
+End
+
+If K=43
+Then
+Lbl G1
+EffÉcran
+Disp "ALLER A :"
+Disp " "
+Output(2,1,"TU EST A Y="
+Output(2,12,Y
+Input "Y = ",Y
+If Y>10 ou Y<2:Goto G1
+Lbl G2
+EffÉcran
+Disp "ALLER A :"
+Disp " "
+Output(2,1,"TU EST A X="
+Output(2,12,X
+Input "X = ",X
+If X>26 ou X<1:Goto G2
+2→L₆(2)
+EffÉcran
+Goto C9
+End
+
+If K=15
+Then
+EffÉcran
+3→P
+2→L₆(2)
+Goto C9
+Lbl F8
+If L₂(2)≠1:L₂(2)→X
+If L₂(2)=1:1→X
+If L₂(2)≠10:L₂(3)→Y
+If L₂(2)=10:10→Y
+2→P
+X→S
+Y→T
+0→K
+End
+
+If K=92 ou K=93 ou K=94 ou K=82 ou K=83 ou K=84 ou K=72
+Then
+L₁(1)→B
+If B≠1
+Then
+For(A,2,B)
+If L₁(A+2)=2 et K=93:Goto C2
+If L₁(A+2)=3 et K=94:Goto C2
+If L₁(A+2)=5 et K=83:Goto C2
+If L₁(A+2)=6 et K=84:Goto C2
+If L₁(A)=X et L₁(A+1)=Y
+Then
+A→C
+Goto C1
+End
+A+3→A
+End
+Goto R1
+Lbl C1
+C→A
+L₁(A+2)→C
+
+If K=92:1→L₁(A+2)
+If K=93:2→L₁(A+2)
+If K=94:3→L₁(A+2)
+If K=82:4→L₁(A+2)
+If K=83:5→L₁(A+2)
+If K=84:6→L₁(A+2)
+If K=72:7→L₁(A+2)
+
+If L₂(2)≠1 et L₂(3)≠10 et L₁(A+2)=2
+Then
+C→L₁(A+2)
+Goto C2
+End
+
+If L₂(5)≠1 et L₂(6)≠1 et L₁(A+2)=3
+Then
+C→L₁(A+2)
+Goto C2
+End
+
+Lbl C2
+If L₁(A+2)≥8:1→L₁(A+2)
+End
+End
+
+If K=23
+Then
+
+getKey→K
+If K=23 et L₁(1)≠1
+Then
+Output(1,1,"SUPPR TOUT DANS 3...")
+Wait 0.5
+0→K
+getKey→K
+If K=23
+Then
+Output(1,1,"SUPPR TOUT DANS 2...")
+Wait 0.5
+0→K
+getKey→K
+If K=23
+Then
+Output(1,1,"SUPPR TOUT DANS 1...")
+Wait 0.5
+0→K
+getKey→K
+If K=23
+Then
+Output(1,1,"SUPPR TOUT DANS 0 !!")
+{1}→L₁
+1→X
+10→Y
+Y→T
+X→S
+0→L₆(2)
+Wait 0.5
+EffÉcran
+Goto R1
+End
+End
+End
+End
+
+Output(1,1,"                          ")
+
+L₁(1)→B
+0→C
+
+If B≠1
+Then
+
+Fixe 0
+
+For(A,2,B)
+
+If H=1 ou H=3
+Then
+(A*100)/B→D
+Output(1,1,D)
+Output(1,4,"/100")
+End
+Output(1,26,"I")
+
+If L₁(A)=X et L₁(A+1)=Y
+Then
+999→L₁(A)
+999→L₁(A+1)
+999→L₁(A+2)
+999→L₁(A+3)
+1→C
+Goto SU
+End
+
+Output(1,26,"-")
+
+A+3→A
+End
+Lbl SU
+
+Output(1,1,"                          ")
+
+Flottant
+
+If C=0
+Then
+999→L₁(B-3)
+999→L₁(B-2)
+999→L₁(B-1)
+999→L₁(B)
+L₁(1)-4→L₁(1)
+EffÉcran
+2→L₆(2)
+If Y≠10:T+1→T
+If Y=10:T-1→T
+If H=0:3→H
+End
+
+End
+End
+
+If K=21
+Then
+L₁(1)→B
+
+If L₂(2)=1 et L₂(3)=10 et X=1 et Y=10:Goto R1
+
+For(A,2,B)
+If L₁(A)=X et L₁(A+1)=Y
+Then
+Output(1,1,"X NE SAFFICHE PAS ? RESOL"
+Goto R1
+End
+A+3→A
+End
+
+Lbl R2
+L₁(1)→B
+If B≠1:B-3→B
+0→C
+If L₁(B)≠999
+Then
+Lbl R3
+augmenter(L₁,{X,Y,1,1})→L₁
+1→C
+Else
+X→L₁(B)
+Y→L₁(B+1)
+1→L₁(B+2)
+1→L₁(B+3)
+2→C
+End
+
+If C=0:Goto R2
+If C=156
+Then
+If L₁(B+4)≠X ou L₁(B+5)≠Y ou L₁(B+6)≠1 ou L₁(B+7)≠1:Goto R2
+End
+If C=2
+Then
+If L₁(B)≠X ou L₁(B+1)≠Y ou L₁(B+2)≠1 ou L₁(B+3)≠1:Goto R2
+End
+
+L₁(1)+4→L₁(1)
+1→L₆(2)
+0→K
+Goto C9
+
+End
+End
+End
+Lbl 12
+EffÉcran
+DelVar L₂
+Output(1,1,"SAVING...")
+Output(2,4,"/100")
+dim(L₁)→A
+{L₁(1)}→L₂
+1→C
+Fixe 0
+For(B,2,A)
+(B*100)/A→D
+Output(2,1,D)
+If L₁(B)≠999 et L₁(B+1)≠999 et L₁(B+2)≠999
+Then
+C+4→C
+augmenter(L₂,{L₁(B),L₁(B+1),L₁(B+2),L₁(B+3)})→L₂
+End
+B+3→B
+End
+Flottant
+L₂→L₁
+DelVar L₂
+C→L₁(1)
+augmenter(L₁,{L₆(3)})→L₁
+DelVar A:DelVar B:DelVar C:DelVar D:DelVar E:DelVar F:DelVar G:DelVar H:DelVar I:DelVar J:DelVar K:DelVar L:DelVar M:DelVar N:DelVar O:DelVar P:DelVar Q:DelVar R:DelVar S:DelVar T:DelVar U:DelVar V:DelVar W:DelVar X:DelVar Y:DelVar θ:DelVar L₂:DelVar L₃:DelVar L₄:DelVar L₅:DelVar L₆
+EffÉcran
+Output(1,1,"SAVED !")
+Pause 
+EffÉcran
